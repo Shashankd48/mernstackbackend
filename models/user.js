@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 
 // if its not working try old above method on importing
-import { v1 as uuidv1 } from 'uuid';
+const uuidv1 = require('uuid/v1');
 
 var userSchema = new mongoose.Schema({
   name: {
@@ -52,13 +52,13 @@ userSchema.virtual('password')
     })
 
 
-userSchema.method = {
+userSchema.methods = {
 
     authenticate: function(plainPassowrd){
         return this.securePassword(plainPassowrd) === this.encry_password;
     },
     securePassword: function(plainPassowrd){
-        if(!password) return "";
+        if(!plainPassowrd) return "";
         try {
             return crypto.createHmac('sha256', this.salt)
                 .update(plainPassowrd)
