@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 const crypto = require('crypto');
 
 // if its not working try old above method on importing
@@ -41,32 +41,34 @@ var userSchema = new mongoose.Schema({
     }
 },{ timestamps: true});
 
-userSchema.virtual('password')
-    .set((password)=>{
-        this._password = password;
-        this.salt = uuidv1();
-        this.encry_password = this.securePassword(password);
-    })
-    .get(()=>{
-        return this._password;
-    })
-
+userSchema
+  .virtual("password")
+  .set(function(password) {
+    this._password = password;
+    this.salt = uuidv1();
+    this.encry_password = this.securePassword(password);
+  })
+  .get(function() {
+    return this._password;
+  });
 
 userSchema.methods = {
+  autheticate: function(plainpassword) {
+    return this.securePassword(plainpassword) === this.encry_password;
+  },
 
-    authenticate: function(plainPassowrd){
-        return this.securePassword(plainPassowrd) === this.encry_password;
-    },
-    securePassword: function(plainPassowrd){
-        if(!plainPassowrd) return "";
-        try {
-            return crypto.createHmac('sha256', this.salt)
-                .update(plainPassowrd)
-                .digest('hex');
-        } catch (error) {
-            return "";   
-        }
+  securePassword: function(plainpassword) {
+    if (!plainpassword) return "";
+    try {
+      return crypto
+        .createHmac("sha256", this.salt)
+        .update(plainpassword)
+        .digest("hex");
+    } catch (err) {
+      return "";
     }
-}
+  }
+};
+
 
 module.exports = mongoose.model('User',userSchema)
