@@ -9,6 +9,7 @@ const cors = require('cors');
 // my routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
 
 // First connecting to the database
 mongoose.connect(process.env.DATABASE, {
@@ -26,7 +27,8 @@ app.use(cors());
 
 // My Routes
 app.use('/api', authRoutes);
-app.use('/api',userRoutes);
+app.use('/api', userRoutes);
+app.use('/api', categoryRoutes)
 // creating server with express
 const port = process.env.Port || 8000;
 
