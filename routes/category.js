@@ -33,7 +33,7 @@ router.get(
     getCategory
 )
 router.get(
-    '/categorires',
+    '/categories',
     getAllCategory
 )
 
@@ -47,7 +47,7 @@ router.put(
 ) 
 
 // Delete Route
-router.put(
+router.delete(
     '/category/:categoryId/:userId',
     isSignedIn, 
     isAuthenticated, 
