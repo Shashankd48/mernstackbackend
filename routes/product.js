@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const {getProductById} = require('../controllers/product');
+const { 
+    getProductById, 
+    createProduct, 
+    getProduct, 
+    photo,
+    deleteProduct,
+    updateProduct,
+    getAllProducts
+} = require('../controllers/product');
 const { isSignedIn, isAuthenticated, isAdmin } = require('../controllers/auth');
 const {getUserById} = require('../controllers/user');
 
@@ -9,5 +17,37 @@ router.param('userId', getUserById);
 router.param('productId', getProductById);
 
 // all of actual routes
+// CREATE: product route
+router.post(
+    '/product/create/:userId', 
+    isSignedIn, 
+    isAuthenticated, 
+    isAdmin, 
+    createProduct
+);
 
+// READ: route
+router.get('/product/:productId', getProduct);
+router.get('/product/photo/:productId', photo);
+
+// DELETE: route
+router.delete(
+    'product/:productId/:userId', 
+    isSignedIn, 
+    isAuthenticated,
+    isAdmin,
+    deleteProduct
+);
+
+// UPDATE: route
+router.put(
+    'product/:productId/:userId', 
+    isSignedIn, 
+    isAuthenticated,
+    isAdmin,
+    updateProduct
+);
+
+// LISTING: route
+router.get('/products', getAllProducts);
 module.exports = router;  
