@@ -161,3 +161,36 @@ exports.getAllProducts = (req, res) => {
         res.json(products);
     })
 }
+
+// GET-ALL CATEGORY
+exports.getAllUniqueCategory = (req, res) => {
+    Product.distinct('category', {}, (err, category) => {
+        if(err) {
+            return res.status(400).json({
+                error: 'No Category Found'
+            })
+        }
+        res.json(category);
+    })
+}
+
+// UPDATE: STOCK
+exports.updateStock = (req, res) => {
+    let myOperation = req.body.order.products.map(product => {
+        return {
+            updateOne: {
+                filter: {_id: product._id},
+                update: {$inc: {stock: - product.count, sold: + product.count}}
+            }
+        }
+    })
+
+    Product.bulkWrite(myOperation, {}, (err, product) => {
+        if(err){
+            return res.status(400).json({
+                error: 'Update operation failed in "bluckWrite"'
+            })
+        }
+        next();
+    })
+}
