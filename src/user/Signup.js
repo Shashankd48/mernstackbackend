@@ -91,7 +91,7 @@ const Signup = () => {
                   </div>
 
                   <button
-                     className="btn btn-success mt-2 block form-control"
+                     className="btn btn-success mt-2 form-control"
                      onClick={onSubmit}
                   >
                      Sign Up
@@ -105,7 +105,7 @@ const Signup = () => {
    // Success Message method
    const successMessage = () => {
       return (
-         <div className="row">
+         <div className="row mt-3">
             <div className="col-md-6 offset-sm-3 text laft">
                <div
                   className="alert alert-success"
@@ -122,7 +122,7 @@ const Signup = () => {
    // Error Message Method
    const errorMessage = () => {
       return (
-         <div className="row">
+         <div className="row mt-3">
             <div className="col-md-6 offset-sm-3 text-left">
                <div
                   className="alert alert-danger"
@@ -138,9 +138,6 @@ const Signup = () => {
    return (
       <Base title="Sign up Page" description="A page for user to sign up!">
          {signUpForm()}
-
-         {/* <p className="text-white text-center mt-2">{JSON.stringify(values)}</p> */}
-
          {successMessage()}
          {errorMessage()}
       </Base>

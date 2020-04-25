@@ -1,9 +1,8 @@
 import React from "react";
 import "../styles.css";
-import { API } from "../backend";
+// import { API } from "../backend";
 import Base from "./Base";
 const Home = () => {
-   console.log("API IS ", API);
    return (
       <Base title="Home Page" description="Welcome to LCO T-shirt store!">
          <div className="row">
