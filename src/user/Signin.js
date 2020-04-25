@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Signin = () => {
    const signInForm = () => {
       return (
-         <div className="row">
+         <div className="row mb-5">
             <div className="col-md-6 offset-sm-3 text-left">
                <form action="">
                   <div className="form-group">
