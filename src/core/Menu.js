@@ -1,6 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { signout, isAuthenticated } from "../auth/helper";
 
+// Change color of menu text for current tab
 const currentTab = (history, path) => {
    if (history.location.pathname === path) {
       return { color: "#2ecc72" };
@@ -54,35 +56,47 @@ const Menu = ({ history }) => {
                </Link>
             </li>
 
-            <li className="nav-item">
-               <Link
-                  style={currentTab(history, "/signup")}
-                  className="nav-link"
-                  to="/signup"
-               >
-                  Sign Up
-               </Link>
-            </li>
+            {/*Signup and Signin fragment */}
+            {!isAuthenticated() && (
+               <Fragment>
+                  <li className="nav-item">
+                     <Link
+                        style={currentTab(history, "/signup")}
+                        className="nav-link"
+                        to="/signup"
+                     >
+                        Sign Up
+                     </Link>
+                  </li>
 
-            <li className="nav-item">
-               <Link
-                  style={currentTab(history, "/signin")}
-                  className="nav-link"
-                  to="/signin"
-               >
-                  Sign In
-               </Link>
-            </li>
+                  <li className="nav-item">
+                     <Link
+                        style={currentTab(history, "/signin")}
+                        className="nav-link"
+                        to="/signin"
+                     >
+                        Sign In
+                     </Link>
+                  </li>
+               </Fragment>
+            )}
 
-            <li className="nav-item">
-               <Link
-                  style={currentTab(history, "/signout")}
-                  className="nav-link"
-                  to="/signout"
-               >
-                  Singout
-               </Link>
-            </li>
+            {/* Signout link goes here if Authenticated */}
+            {isAuthenticated() && (
+               <li className="nav-item">
+                  <span
+                     className="nav-link text-warning"
+                     style={{ cursor: "pointer" }}
+                     onClick={() => {
+                        signout(() => {
+                           history.push("/");
+                        });
+                     }}
+                  >
+                     Signout
+                  </span>
+               </li>
+            )}
          </ul>
       </div>
    );

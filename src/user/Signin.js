@@ -6,8 +6,8 @@ import { signin, authenticate, isAuthenticated } from "../auth/helper";
 const Signin = () => {
    // store temparory form data before submitting to backend
    const [values, setValues] = useState({
-      email: "",
-      password: "",
+      email: "aaa@g.com",
+      password: "hello1",
       error: "",
       loading: false,
       didRedirect: false,
@@ -60,7 +60,7 @@ const Signin = () => {
    };
 
    // Success Message method
-   // FIXME:
+   // FIXME: Design issue
    const loadingMessage = () => {
       return (
          loading && (
@@ -71,7 +71,7 @@ const Signin = () => {
       );
    };
 
-   // Error Message Method
+   // ERROR: Message Method
    const errorMessage = () => {
       return (
          <div className="row mt-4">
@@ -87,6 +87,7 @@ const Signin = () => {
       );
    };
 
+   // FORM: Our actual form
    const signInForm = () => {
       return (
          <div className="row">
@@ -130,7 +131,6 @@ const Signin = () => {
          {errorMessage()}
          {signInForm()}
          {performRedirect()}
-         <p className="text-center text-white mt-3">{JSON.stringify(values)}</p>
       </Base>
    );
 };
