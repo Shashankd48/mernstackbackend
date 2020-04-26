@@ -36,25 +36,31 @@ const Menu = ({ history }) => {
                </Link>
             </li>
 
-            <li className="nav-item">
-               <Link
-                  style={currentTab(history, "/user/dashboard")}
-                  className="nav-link"
-                  to="/user/dashboard"
-               >
-                  Dashboard
-               </Link>
-            </li>
+            {/*User Dashboard : conditinal rendering */}
+            {isAuthenticated() && isAuthenticated().user.rol === 0 && (
+               <li className="nav-item">
+                  <Link
+                     style={currentTab(history, "/user/dashboard")}
+                     className="nav-link"
+                     to="/user/dashboard"
+                  >
+                     Dashboard
+                  </Link>
+               </li>
+            )}
 
-            <li className="nav-item">
-               <Link
-                  style={currentTab(history, "/admin/dashboard")}
-                  className="nav-link"
-                  to="/admin/dashboard"
-               >
-                  A. Dashboard
-               </Link>
-            </li>
+            {/*Admin Dashboard : conditinal rendering */}
+            {isAuthenticated() && isAuthenticated().user.rol === 1 && (
+               <li className="nav-item">
+                  <Link
+                     style={currentTab(history, "/admin/dashboard")}
+                     className="nav-link"
+                     to="/admin/dashboard"
+                  >
+                     Admin-Dashboard
+                  </Link>
+               </li>
+            )}
 
             {/*Signup and Signin fragment */}
             {!isAuthenticated() && (
