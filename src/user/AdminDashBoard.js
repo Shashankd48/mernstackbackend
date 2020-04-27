@@ -4,7 +4,7 @@ import { isAuthenticated } from "../auth/helper";
 import { Link } from "react-router-dom";
 const AdminDashboard = () => {
    const {
-      user: { name, email, rol },
+      user: { name, email },
    } = isAuthenticated();
 
    // Left Section
@@ -23,11 +23,17 @@ const AdminDashboard = () => {
                </li>
 
                <li className="list-group-item">
+                  <Link to="/admin/category" className="nav-link text-success">
+                     Manage Categories
+                  </Link>
+               </li>
+
+               <li className="list-group-item">
                   <Link
                      to="/admin/create/product"
                      className="nav-link text-success"
                   >
-                     Create Products
+                     Add New Products
                   </Link>
                </li>
 
