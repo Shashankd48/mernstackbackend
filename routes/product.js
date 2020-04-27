@@ -33,7 +33,7 @@ router.get('/product/photo/:productId', photo);
 
 // DELETE: route
 router.delete(
-    'product/:productId/:userId', 
+    '/product/:productId/:userId', 
     isSignedIn, 
     isAuthenticated,
     isAdmin,
@@ -42,7 +42,7 @@ router.delete(
 
 // UPDATE: route
 router.put(
-    'product/:productId/:userId', 
+    '/product/:productId/:userId', 
     isSignedIn, 
     isAuthenticated,
     isAdmin,

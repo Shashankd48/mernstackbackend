@@ -7,7 +7,7 @@ const fs = require('fs');
 exports.getProductById = (req, res, next, id) => {
     Product.findById(id)
     .populate('category')
-    .exce((err, product) => {
+    .exec((err, product) => {
         if(err){
             return res.status(400).json({
                 error: "Product not found"
@@ -96,7 +96,8 @@ exports.deleteProduct = (req, res) => {
             })
         }
         res.json({
-            message: `Product deleted successfully! ${deletedProduct}`
+            message: 'Product deleted successfully!',
+            deletedProduct  
         })
     })
 }

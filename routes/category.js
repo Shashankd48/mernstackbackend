@@ -28,10 +28,12 @@ router.post(
 );
 
 // Read route
+// GET: Category By Id
 router.get(
     '/category/:categoryId',
     getCategory
 )
+// GET: All Categories
 router.get(
     '/categories',
     getAllCategory
