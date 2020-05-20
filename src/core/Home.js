@@ -23,16 +23,21 @@ const Home = () => {
       loadAllProducts();
    }, []);
    return (
-      <Base title="Home Page" description="Welcome to LCO T-shirt store!">
-         <h1 className="text-white text-center mb-4">All From T-shirts</h1>
-         <div className="row text-center">
-            {products.map((product, index) => {
-               return (
-                  <div key={index} className="col-4 mb-4">
-                     <Card product={product} />
-                  </div>
-               );
-            })}
+      <Base
+         title="Awesome T-shirts explore now."
+         description="Welcome to LCO T-shirt store!, Get awesome t-shirt at best price."
+      >
+         <h3 className="text-center mb-4">All From T-shirts</h3>
+         <div className="container">
+            <div className="row text-center">
+               {products.map((product, index) => {
+                  return (
+                     <div key={index} className="col-md-4 col-sm-6 mb-4">
+                        <Card product={product} />
+                     </div>
+                  );
+               })}
+            </div>
          </div>
       </Base>
    );

@@ -34,7 +34,7 @@ const Card = ({
          addToCart && (
             <button
                onClick={addThisItemToCart}
-               className="btn btn-block btn-outline-success mt-2 mb-2"
+               className="btn btn-outline-success"
             >
                Add to Cart
             </button>
@@ -49,32 +49,35 @@ const Card = ({
                   removeItemFromCart(product._id);
                   setReload(!reload);
                }}
-               className="btn btn-block btn-outline-danger mt-2 mb-2"
+               className="btn btn-outline-danger"
             >
-               Remove from cart
+               Remove
             </button>
          )
       );
    };
 
    return (
-      <div className="card text-white bg-dark border border-info ">
-         <div className="card-header lead">{cardTitle}</div>
-         <div className="card-body">
+      <div className="card">
+         <div className="rounded">
+            <ImageHelper product={product} />
+         </div>
+         <div className="card-body text-left">
             {getRedirect(redirect)}
-            <div className="rounded border border-success p-2">
-               <ImageHelper product={product} />
-            </div>
-            <p className="mt-2 lead bg-success font-weight-normal text-wrap">
-               {cardDescription}
-            </p>
-            <p className="btn btn-success rounded  btn-sm px-4">
-               $ {cardPrice}
-            </p>
+
+            <h5 className="card-title">{cardTitle} </h5>
+            <p className="mt-1 text-wrap">{cardDescription}</p>
             <div className="row">
-               <div className="col-12">{showAddToCart(addToCart)}</div>
-               <div className="col-12">
-                  {showRemoveFromCart(removeFromCart)}
+               <div className="col-md-6 col-sm-4">
+                  <p className="text-success">
+                     <b>Price: ${cardPrice}</b>
+                  </p>
+               </div>
+               <div className="col-md-6 col-sm-8">
+                  <div className="col-12">{showAddToCart(addToCart)}</div>
+                  <div className="col-12">
+                     {showRemoveFromCart(removeFromCart)}
+                  </div>
                </div>
             </div>
          </div>

@@ -10,38 +10,43 @@ const Cart = () => {
    useEffect(() => {
       setProducts(loadCart());
    }, [reload]);
-
    const loadAllProducts = () => {
       return (
          <div>
-            <h1>This section is load products</h1>
-            {products.map((product, index) => {
-               return (
-                  <Card
-                     key={product._id}
-                     product={product}
-                     addToCart={false}
-                     removeFromCart={true}
-                     setReload={setReload}
-                     reload={reload}
-                  />
-               );
-            })}
+            <h3 className="mb-4">Your Products 😊</h3>
+            <div className="row">
+               {products.map((product, index) => {
+                  return (
+                     <div className="col-md-6 col-sm-12 my-2" key={index}>
+                        <Card
+                           key={product._id}
+                           product={product}
+                           addToCart={false}
+                           removeFromCart={true}
+                           setReload={setReload}
+                           reload={reload}
+                        />
+                     </div>
+                  );
+               })}
+            </div>
          </div>
       );
    };
    const loadCheckout = () => {
       return (
          <div>
-            <h1>This section is for checkout</h1>
+            <span className="mb-3">
+               <h3>Checkout ✔</h3>
+            </span>
          </div>
       );
    };
    return (
-      <Base title="Cart Page" description="Ready to checkout">
+      <Base title="Your Cart 🛒" description="Ready to checkout">
          <div className="row text-center">
-            <div className="col-6">{loadAllProducts()}</div>
-            <div className="col-6">{loadCheckout()}</div>
+            <div className="col-md-6 col-sm-12">{loadAllProducts()}</div>
+            <div className="col-md-6 col-sm-12">{loadCheckout()}</div>
          </div>
       </Base>
    );

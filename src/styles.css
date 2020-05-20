@@ -3,9 +3,19 @@
 .nav :hover {
    border-radius: 0px;
 }
-
 body {
-   background: #343a40;
+   background: #f3f4f7;
+   /* overflow-x: hidden; */
+}
+.container-fluid {
+   padding: 0px !important;
+}
+.bg-base {
+   background-color: #caccd1;
+}
+.bg-nav,
+.bg-footer {
+   background-color: #0a8ea0;
 }
 
 footer {

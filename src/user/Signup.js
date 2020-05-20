@@ -47,11 +47,12 @@ const Signup = () => {
    // Form goes here
    const signUpForm = () => {
       return (
-         <div className="row">
-            <div className="col-md-6 offset-sm-3 text-left">
+         <div className="col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+            <div className="card py-5 text-left px-5">
+               <h3 className="text-center">Sign Up 🔏</h3>
                <form action="">
                   <div className="form-group">
-                     <label className="text-light">First Name</label>
+                     <label>First Name</label>
                      <input
                         className="form-control"
                         type="text"
@@ -61,7 +62,7 @@ const Signup = () => {
                   </div>
 
                   <div className="form-group">
-                     <label className="text-light">Last Name</label>
+                     <label>Last Name</label>
                      <input
                         className="form-control"
                         type="text"
@@ -71,7 +72,7 @@ const Signup = () => {
                   </div>
 
                   <div className="form-group">
-                     <label className="text-light">Email</label>
+                     <label>Email</label>
                      <input
                         className="form-control"
                         type="email"
@@ -81,7 +82,7 @@ const Signup = () => {
                   </div>
 
                   <div className="form-group">
-                     <label className="text-light">Password</label>
+                     <label>Password</label>
                      <input
                         className="form-control"
                         type="password"
@@ -105,15 +106,13 @@ const Signup = () => {
    // Success Message method
    const successMessage = () => {
       return (
-         <div className="row mt-3">
-            <div className="col-md-6 offset-sm-3 text laft">
-               <div
-                  className="alert alert-success"
-                  style={{ display: success ? "" : "none" }}
-               >
-                  New account was created successfully. Please{" "}
-                  <Link to="/signin">Login here</Link>
-               </div>
+         <div className="col-md-6 offset-md-3 text-left mt-3">
+            <div
+               className="alert alert-success"
+               style={{ display: success ? "" : "none" }}
+            >
+               New account was created successfully. Please{" "}
+               <Link to="/signin">Login here</Link>
             </div>
          </div>
       );
@@ -122,24 +121,26 @@ const Signup = () => {
    // Error Message Method
    const errorMessage = () => {
       return (
-         <div className="row mt-3">
-            <div className="col-md-6 offset-sm-3 text-left">
-               <div
-                  className="alert alert-danger"
-                  style={{ display: error ? "" : "none" }}
-               >
-                  {error}
-               </div>
+         <div className="col-md-6 offset-md-3 text-left mt-3">
+            <div
+               className="alert alert-danger"
+               style={{ display: error ? "" : "none" }}
+            >
+               {error}
             </div>
          </div>
       );
    };
 
    return (
-      <Base title="Sign up Page" description="A page for user to sign up!">
-         {signUpForm()}
+      <Base
+         title="LCO T-shirt Store"
+         description="Welcome to lco t-shirt, Create your account for free."
+         className="p-0 pb-5"
+      >
          {successMessage()}
          {errorMessage()}
+         {signUpForm()}
       </Base>
    );
 };

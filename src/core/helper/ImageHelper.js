@@ -10,7 +10,7 @@ const ImageHelper = ({ product }) => {
          src={imageUrl}
          alt="T-shirt"
          style={{ maxHeight: "100%", maxWidth: "100%" }}
-         className="mb-3 rounded"
+         className="rounded"
       />
    );
 };

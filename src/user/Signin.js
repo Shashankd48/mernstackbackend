@@ -89,11 +89,12 @@ const Signin = () => {
    // FORM: Our actual form
    const signInForm = () => {
       return (
-         <div className="row">
-            <div className="col-md-6 offset-sm-3 text-left">
+         <div className="col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+            <div className="card py-5 text-left px-5">
+               <h3 className="text-center">Sign In 🔐</h3>
                <form action="">
                   <div className="form-group">
-                     <label className="text-light">Email</label>
+                     <label>Email</label>
                      <input
                         className="form-control"
                         type="email"
@@ -103,7 +104,7 @@ const Signin = () => {
                      />
                   </div>
                   <div className="form-group">
-                     <label className="text-light">Password</label>
+                     <label>Password</label>
                      <input
                         className="form-control"
                         type="password"
@@ -125,7 +126,11 @@ const Signin = () => {
    };
 
    return (
-      <Base title="Sign In Page" description="A page for user to sign in!">
+      <Base
+         title="LCO T-shirt Store"
+         description="Welcome to lco t-shirt, signin your account to get amazing t-shirts."
+         className="p-0 pb-5"
+      >
          {loadingMessage()}
          {errorMessage()}
          {signInForm()}
