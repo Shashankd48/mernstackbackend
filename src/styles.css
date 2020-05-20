@@ -24,3 +24,16 @@ footer {
    right: 0px;
    left: 0px;
 }
+ul li .nav-link {
+   outline: none;
+   border: none !important;
+   margin: 0px 10px;
+   transition: ease-in-out all 300ms;
+}
+
+ul li .nav-link:hover {
+   background-color: #30c39e;
+}
+.btn {
+   transition: ease-in-out all 300ms !important;
+}

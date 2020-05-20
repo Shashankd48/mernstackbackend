@@ -3,17 +3,23 @@ import "../styles.css";
 import Base from "./Base";
 import Card from "./reusableComponent/Card";
 import { loadCart } from "./helper/cartHelper";
+import StripeCheckout from "../paymentGateways/StripeCheckout";
 
 const Cart = () => {
    const [products, setProducts] = useState([]);
    const [reload, setReload] = useState(false);
+
    useEffect(() => {
       setProducts(loadCart());
    }, [reload]);
+
+   // Cart Products goes here
    const loadAllProducts = () => {
       return (
          <div>
-            <h3 className="mb-4">Your Products 😊</h3>
+            <h3 className="mb-4">
+               Your Products <span>😊</span>
+            </h3>
             <div className="row">
                {products.map((product, index) => {
                   return (
@@ -37,8 +43,11 @@ const Cart = () => {
       return (
          <div>
             <span className="mb-3">
-               <h3>Checkout ✔</h3>
+               <h3>
+                  Checkout <span>✔</span>
+               </h3>
             </span>
+            <StripeCheckout products={products} setReload={setReload} />
          </div>
       );
    };

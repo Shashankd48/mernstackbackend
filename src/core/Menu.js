@@ -5,7 +5,7 @@ import { signout, isAuthenticated } from "../auth/helper";
 // Change color of menu text for current tab
 const currentTab = (history, path) => {
    if (history.location.pathname === path) {
-      return { color: "#2ecc72" };
+      return { backgroundColor: "#30c39e", color: "#ffffff" };
    } else {
       return { color: "#ffffff" };
    }
@@ -15,7 +15,7 @@ const currentTab = (history, path) => {
 const Menu = ({ history }) => {
    return (
       <div>
-         <ul className="nav nav-tabs bg-nav py-2 px-5">
+         <ul className="nav nav-tabs bg-nav py-3 px-5">
             <li className="nav-item">
                <Link
                   style={currentTab(history, "/")}
@@ -91,7 +91,7 @@ const Menu = ({ history }) => {
             {isAuthenticated() && (
                <li className="nav-item">
                   <span
-                     className="nav-link text-warning"
+                     className="nav-link bg-danger text-white"
                      style={{ cursor: "pointer" }}
                      onClick={() => {
                         signout(() => {

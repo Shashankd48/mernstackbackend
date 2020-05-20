@@ -49,7 +49,9 @@ const Signup = () => {
       return (
          <div className="col-md-6 offset-md-3 col-sm-8 offset-sm-2">
             <div className="card py-5 text-left px-5">
-               <h3 className="text-center">Sign Up 🔏</h3>
+               <h3 className="text-center">
+                  Sign Up <span>🔏</span>
+               </h3>
                <form action="">
                   <div className="form-group">
                      <label>First Name</label>
