@@ -117,6 +117,7 @@ exports.updateProduct = (req, res) => {
         }
         // Updation goes here
         let product = req.product;
+        
         // update new fields and extend them using lodash
         product = _.extend(product, fields);
 
