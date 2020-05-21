@@ -16,14 +16,14 @@ const AdminDashboard = () => {
                <li className="list-group-item">
                   <Link
                      to="/admin/create/category"
-                     className="nav-link text-success"
+                     className="nav-link admin-link"
                   >
                      Create Categories
                   </Link>
                </li>
 
                <li className="list-group-item">
-                  <Link to="/admin/category" className="nav-link text-success">
+                  <Link to="/admin/category" className="nav-link admin-link">
                      Manage Categories
                   </Link>
                </li>
@@ -31,20 +31,20 @@ const AdminDashboard = () => {
                <li className="list-group-item">
                   <Link
                      to="/admin/create/product"
-                     className="nav-link text-success"
+                     className="nav-link admin-link"
                   >
                      Add New Products
                   </Link>
                </li>
 
                <li className="list-group-item">
-                  <Link to="/admin/products" className="nav-link text-success">
+                  <Link to="/admin/products" className="nav-link admin-link">
                      Manage Products
                   </Link>
                </li>
 
                <li className="list-group-item">
-                  <Link to="/admin/orders" className="nav-link text-success">
+                  <Link to="/admin/orders" className="nav-link admin-link">
                      Manage Orders
                   </Link>
                </li>
@@ -82,7 +82,7 @@ const AdminDashboard = () => {
       <Base
          title="Welcome to admin area"
          description="Manage all of your products here..."
-         className="bg-base p-4"
+         className=" bg-base p-4"
       >
          <div className="row">
             <div className="col-md-3 col-sm-6">{adminLeftSide()}</div>

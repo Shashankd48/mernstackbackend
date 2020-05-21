@@ -114,19 +114,6 @@ const AddProduct = () => {
    // Form Goes here
    const createProductForm = () => (
       <form>
-         <span>Post photo</span>
-         <div className="form-group">
-            <label className="btn btn-block btn-success">
-               <input
-                  onChange={handleChange("photo")}
-                  type="file"
-                  name="photo"
-                  accept="image"
-                  placeholder="choose a file"
-               />
-            </label>
-         </div>
-
          <div className="form-group">
             <input
                onChange={handleChange("name")}
@@ -163,7 +150,7 @@ const AddProduct = () => {
                className="form-control"
                placeholder="Category"
             >
-               <option>Select</option>
+               <option>Select Category</option>
                {categories &&
                   categories.map((category, index) => (
                      <option key={index} value={category._id}>
@@ -183,10 +170,28 @@ const AddProduct = () => {
             />
          </div>
 
+         <div className="form-group">
+            <div class="custom-file">
+               <input
+                  class="custom-file-input"
+                  id="inputGroupFile01"
+                  aria-describedby="inputGroupFileAddon01"
+                  onChange={handleChange("photo")}
+                  type="file"
+                  name="photo"
+                  accept="image"
+                  placeholder="choose a file"
+               />
+               <label class="custom-file-label" for="inputGroupFile01">
+                  Choose picture for T-shirt
+               </label>
+            </div>
+         </div>
+
          <button
             type="submit"
             onClick={onSubmit}
-            className="btn btn-outline-success mb-3"
+            className="btn btn-outline-info"
          >
             Create Product
          </button>
@@ -197,14 +202,24 @@ const AddProduct = () => {
       <Base
          title="Add New Product here"
          description="Welcome to product creation section!"
-         className="container bg-info p-4"
+         className="container-fluid mb-4"
       >
-         <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
-            Admin Home
-         </Link>
+         <div className="col-md-8 offset-md-2 rounded">
+            <div className="card py-4 px-5">
+               <div class="row ml-1 mb-3">
+                  <div className="col-4 p-0">
+                     <Link
+                        to="/admin/dashboard"
+                        className="btn btn-md btn-info mb-3"
+                     >
+                        Admin Home
+                     </Link>
+                  </div>
+                  <div className="col-8">
+                     <h4>Fill Product Details</h4>
+                  </div>
+               </div>
 
-         <div className="row bg-dark text-white rounded">
-            <div className="col-md-8 offset-md-2 pt-3">
                {successMessage()}
                {errorMessage()}
                {createProductForm()}

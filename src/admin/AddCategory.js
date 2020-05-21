@@ -15,7 +15,7 @@ const AddCategory = () => {
    const myCategoryForm = () => (
       <form>
          <div className="form-group">
-            <p className="lead">Enter the category</p>
+            <h5 className="my-3">Enter the category</h5>
             <input
                type="text"
                className="form-control my-3"
@@ -91,10 +91,10 @@ const AddCategory = () => {
       <Base
          title="Create category here"
          description="Add a new category for new t-shirts"
-         className="container bg-info p-4"
+         className="container-fluid mb-3"
       >
-         <div className="row bg-white rounded">
-            <div className="col-md-8 offset-md-2">
+         <div className="col-md-6 offset-md-3 rounded col-sm-9 offset-sm-1">
+            <div className="card py-3 px-5">
                {successMessage()}
                {errorMessage()}
                {myCategoryForm()}

@@ -32,7 +32,10 @@ const Home = () => {
             <div className="row text-center">
                {products.map((product, index) => {
                   return (
-                     <div key={index} className="col-md-4 col-sm-6 mb-4">
+                     <div
+                        key={index}
+                        className="col-lg-4 col-md-6 col-sm-6 mb-4 px-4"
+                     >
                         <Card product={product} />
                      </div>
                   );

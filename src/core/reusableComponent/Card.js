@@ -36,7 +36,7 @@ const Card = ({
                onClick={addThisItemToCart}
                className="btn btn-outline-success"
             >
-               Add to Cart
+               Buy Now
             </button>
          )
       );
@@ -68,16 +68,14 @@ const Card = ({
             <h5 className="card-title">{cardTitle} </h5>
             <p className="mt-1 text-wrap">{cardDescription}</p>
             <div className="row">
-               <div className="col-md-6 col-sm-4">
-                  <p className="text-success">
+               <div className="col-5 ">
+                  <p className="text-success mt-2">
                      <b>Price: ${cardPrice}</b>
                   </p>
                </div>
-               <div className="col-md-6 col-sm-8">
-                  <div className="col-12">{showAddToCart(addToCart)}</div>
-                  <div className="col-12">
-                     {showRemoveFromCart(removeFromCart)}
-                  </div>
+               <div className="col-7 text-right">
+                  {showAddToCart(addToCart)}
+                  {showRemoveFromCart(removeFromCart)}
                </div>
             </div>
          </div>

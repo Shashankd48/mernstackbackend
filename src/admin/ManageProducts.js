@@ -33,28 +33,33 @@ const ManageProducts = () => {
       });
    };
    return (
-      <Base title="Welcome admin" description="Manage products here">
-         <h2 className="mb-4">All products:</h2>
-         <Link className="btn btn-info" to={`/admin/dashboard`}>
-            <span className="">Admin Home</span>
-         </Link>
-         <div className="row">
-            <div className="col-12">
-               <h2 className="text-center text-white my-3">
+      <Base
+         title="Manage products here"
+         description="Update, Delete your products here."
+         className="container pb-4"
+      >
+         <div className="card p-4">
+            <div className="d-flex mb-3">
+               <Link className="btn btn-info" to={`/admin/dashboard`}>
+                  <span className="">Admin Home</span>
+               </Link>
+               <h4 className="text-center ml-5">
                   Total {products.length} products
-               </h2>
+               </h4>
+            </div>
 
-               {/*Conditional Rendering */}
-               {products.map((product, index) => {
-                  return (
-                     <div key={index} className="row text-center mb-2 ">
-                        <div className="col-4">
-                           <h3 className="text-white text-left">
-                              {product.name}
-                           </h3>
-                        </div>
+            {/*Conditional Rendering */}
+            {products.map((product, index) => {
+               return (
+                  <div key={index} className="row text-center mb-2 ">
+                     <div className="col-7">
+                        <h5 className="text-left">
+                           <span>{index + 1}. </span> {product.name}
+                        </h5>
+                     </div>
 
-                        <div className="col-4">
+                     <div className="col-5 d-flex justify-content-around">
+                        <div className="">
                            <Link
                               className="btn btn-success"
                               to={`/admin/product/update/${product._id}`}
@@ -63,7 +68,7 @@ const ManageProducts = () => {
                            </Link>
                         </div>
 
-                        <div className="col-4">
+                        <div className="">
                            <button
                               onClick={() => {
                                  deleteThisProduct(product._id);
@@ -74,9 +79,9 @@ const ManageProducts = () => {
                            </button>
                         </div>
                      </div>
-                  );
-               })}
-            </div>
+                  </div>
+               );
+            })}
          </div>
       </Base>
    );

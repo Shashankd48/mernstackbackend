@@ -94,7 +94,7 @@ const Signup = () => {
                   </div>
 
                   <button
-                     className="btn btn-success mt-2 form-control"
+                     className="btn btn-info mt-2 form-control"
                      onClick={onSubmit}
                   >
                      Sign Up

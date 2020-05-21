@@ -21,20 +21,27 @@ const Cart = () => {
                Your Products <span>😊</span>
             </h3>
             <div className="row">
-               {products.map((product, index) => {
-                  return (
-                     <div className="col-md-6 col-sm-12 my-2" key={index}>
-                        <Card
-                           key={product._id}
-                           product={product}
-                           addToCart={false}
-                           removeFromCart={true}
-                           setReload={setReload}
-                           reload={reload}
-                        />
-                     </div>
-                  );
-               })}
+               {products !== undefined ? (
+                  products.map((product, index) => {
+                     return (
+                        <div
+                           className="col-lg-6 col-md-12 col-sm-12 my-3"
+                           key={index}
+                        >
+                           <Card
+                              key={product._id}
+                              product={product}
+                              addToCart={false}
+                              removeFromCart={true}
+                              setReload={setReload}
+                              reload={reload}
+                           />
+                        </div>
+                     );
+                  })
+               ) : (
+                  <i class="fas fa-h1    "></i>
+               )}
             </div>
          </div>
       );
@@ -52,10 +59,14 @@ const Cart = () => {
       );
    };
    return (
-      <Base title="Your Cart 🛒" description="Ready to checkout">
-         <div className="row text-center">
-            <div className="col-md-6 col-sm-12">{loadAllProducts()}</div>
-            <div className="col-md-6 col-sm-12">{loadCheckout()}</div>
+      <Base
+         title="Your Cart 🛒"
+         description="Ready to checkout"
+         className="container mb-4"
+      >
+         <div className="row text-center" style={{ minHeight: "200px" }}>
+            <div className="col-md-7 col-sm-12">{loadAllProducts()}</div>
+            <div className="col-md-5 col-sm-12">{loadCheckout()}</div>
          </div>
       </Base>
    );

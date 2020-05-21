@@ -33,48 +33,52 @@ const ManageCategories = () => {
       });
    };
    return (
-      <Base title="Welcome admin" description="Manage categories here">
-         <h2 className="mb-4">All Categories:</h2>
-         <Link className="btn btn-info" to={`/admin/dashboard`}>
-            <span className="">Admin Home</span>
-         </Link>
-         <div className="row">
-            <div className="col-12">
-               <h2 className="text-center text-white my-3">
+      <Base
+         title="Manage categories here..."
+         description="Update, Delete your category here."
+         className="container pb-4"
+      >
+         <div className="card p-4">
+            <div className="d-flex mb-3">
+               <Link className="btn btn-info" to={`/admin/dashboard`}>
+                  <span className="">Admin Home</span>
+               </Link>
+               <h4 className="text-center ml-5">
                   Total {categories.length} categories
-               </h2>
-
-               {/*Conditional Rendering */}
-               {categories.map((category, index) => {
-                  return (
-                     <div key={category._id} className="row text-center mb-2 ">
-                        <div className="col-4">
-                           <h3 className="text-white text-left">
-                              {category.name}
-                           </h3>
-                        </div>
-                        <div className="col-4">
-                           <Link
-                              className="btn btn-success"
-                              to={`/admin/category/update/${category._id}`}
-                           >
-                              <span className="">Update</span>
-                           </Link>
-                        </div>
-                        <div className="col-4">
-                           <button
-                              onClick={() => {
-                                 deleteThisCategory(category._id);
-                              }}
-                              className="btn btn-danger"
-                           >
-                              Delete
-                           </button>
-                        </div>
-                     </div>
-                  );
-               })}
+               </h4>
             </div>
+
+            {/*Conditional Rendering */}
+            {categories.map((category, index) => {
+               return (
+                  <div key={category._id} className="row text-center mb-2 ">
+                     <div className="col-6">
+                        <h5 className="text-left">
+                           <span>{index + 1}. </span>
+                           {category.name}
+                        </h5>
+                     </div>
+                     <div className="col-3">
+                        <Link
+                           className="btn btn-success"
+                           to={`/admin/category/update/${category._id}`}
+                        >
+                           <span className="">Update</span>
+                        </Link>
+                     </div>
+                     <div className="col-3">
+                        <button
+                           onClick={() => {
+                              deleteThisCategory(category._id);
+                           }}
+                           className="btn btn-danger"
+                        >
+                           Delete
+                        </button>
+                     </div>
+                  </div>
+               );
+            })}
          </div>
       </Base>
    );

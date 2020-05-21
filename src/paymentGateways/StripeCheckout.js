@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth/helper";
 import { emptyCart, loadCart } from "../core/helper/cartHelper";
 import { Link } from "react-router-dom";
+import { API } from "../backend";
 import StripeCheckoutButton from "react-stripe-checkout";
+import { createOrder } from "../core/helper/orderHelper";
+
 export default function StripeCheckout({
    products,
-   setReaload = (f) => f,
+   setReload = (f) => f,
    reload = undefined,
 }) {
    const [data, setData] = useState({
@@ -16,41 +19,66 @@ export default function StripeCheckout({
    });
    const token = isAuthenticated() && isAuthenticated().token;
    const userId = isAuthenticated() && isAuthenticated().user._id;
-   const getFinalPrice = () => {
+
+   // gettotal ammount to be paied
+   const getFinalAmount = () => {
       let amount = 0;
-      products.map((p) => {
-         amount = amount + p.price;
-      });
+      if (products !== undefined) {
+         products.map((product) => {
+            amount = amount + product.price;
+         });
+      }
       return amount;
    };
+
+   // makePayement API calll
    const makePayment = (token) => {
-      //
+      const body = {
+         token,
+         products,
+         finalAmount: getFinalAmount(),
+      };
+      const headers = {
+         "Content-Type": "application/json",
+      };
+      return fetch(`${API}/stripepayment`, {
+         method: "POST",
+         headers,
+         body: JSON.stringify(body),
+      })
+         .then((response) => {
+            console.log(response);
+            const { status } = response;
+            console.log("STATUS: ", status);
+            // emptyCart();
+         })
+         .catch((error) => console.log(error));
    };
+   // Show stripe button
    const showStripeButton = () => {
       return isAuthenticated() ? (
          <StripeCheckoutButton
-            stripeKey=""
+            stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
             token={makePayment}
-            amount={getFinalPrice() * 100}
-            name="Buy T-shirt"
-            billingAddress
+            amount={getFinalAmount() * 100}
+            name="LCO Store checkout"
             shippingAddress
+            billingAddress
          >
             <button className="btn btn-info">Pay with stripe</button>
          </StripeCheckoutButton>
       ) : (
-         <Link to="/signin">
-            <button className="btn btn-warning">Sign in</button>
+         <Link to="/sigin">
+            <button className="btn warning">Sign In</button>
          </Link>
       );
    };
-
    return (
-      <div>
-         <h4 className="text-center my-3">Stripe Checkout 💳 </h4>
-
-         <p className="text-success">Amount to be paid {getFinalPrice()} $</p>
-         {showStripeButton()}
+      <div className="mt-5 card mx-4 py-4">
+         <p className="text-success">
+            <b> Total amount to be paid {getFinalAmount()} $</b>
+         </p>
+         <div className="mt-2">{showStripeButton()} </div>
       </div>
    );
 }

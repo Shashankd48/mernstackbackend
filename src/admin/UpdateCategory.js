@@ -83,9 +83,9 @@ const UpdateCategory = ({ match }) => {
 
    //   Form Goes here
    const myCategoryForm = () => (
-      <form className="mt-3">
+      <form>
          <div className="form-group">
-            <p className="lead">Enter new category name here</p>
+            <h5 className="my-3">Enter new category name...</h5>
             <input
                type="text"
                className="form-control my-3"
@@ -103,12 +103,12 @@ const UpdateCategory = ({ match }) => {
    );
    return (
       <Base
-         title="Create category here"
-         description="Add a new category for new t-shirts"
-         className="container bg-info p-4"
+         title="Update category here"
+         description="Update you existing category for t-shirts."
+         className="container-fluid mb-3"
       >
-         <div className="row bg-white rounded">
-            <div className="col-md-8 offset-md-2">
+         <div className=" col-md-6 offset-md-3 col-sm-9 offset-sm-1 rounded">
+            <div className="card py-3 px-5">
                {successMessage()}
                {errorMessage()}
                {myCategoryForm()}
