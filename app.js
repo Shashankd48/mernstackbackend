@@ -13,6 +13,7 @@ const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
 const orderRoutes = require("./routes/order");
 const stripeRoutes = require("./routes/stripePayment");
+const brainTreePaypal = require("./routes/brainTreePaypal");
 
 // First connecting to the database
 mongoose
@@ -37,6 +38,7 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", stripeRoutes);
+app.use("/api", brainTreePaypal);
 
 // creating server with express
 const port = process.env.PORT || 8000;
