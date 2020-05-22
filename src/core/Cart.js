@@ -4,6 +4,8 @@ import Base from "./Base";
 import Card from "./reusableComponent/Card";
 import { loadCart } from "./helper/cartHelper";
 import StripeCheckout from "../paymentGateways/StripeCheckout";
+import { Link } from "react-router-dom";
+import BrainTreePayment from "../paymentGateways/BrainTreePayment";
 
 const Cart = () => {
    const [products, setProducts] = useState([]);
@@ -14,7 +16,7 @@ const Cart = () => {
    }, [reload]);
 
    // Cart Products goes here
-   const loadAllProducts = () => {
+   const loadAllProducts = (products) => {
       return (
          <div>
             <h3 className="mb-4">
@@ -40,20 +42,35 @@ const Cart = () => {
                      );
                   })
                ) : (
-                  <i class="fas fa-h1    "></i>
+                  <i className="fas fa-h1"></i>
                )}
             </div>
          </div>
       );
    };
+   const showTotalAmount = () => {
+      let amount = 0;
+      if (products !== undefined) {
+         products.map((product) => {
+            amount = amount + product.price;
+         });
+      }
+      return (
+         <p className="text-success my-1">
+            <b> Total amount to be paid {amount} $</b>
+         </p>
+      );
+   };
    const loadCheckout = () => {
       return (
-         <div>
+         <div className="card py-4 mb-4">
             <span className="mb-3">
                <h3>
                   Checkout <span>✔</span>
                </h3>
             </span>
+            {products.length > 0 ? showTotalAmount() : ""}
+            <BrainTreePayment products={products} setReload={setReload} />
             <StripeCheckout products={products} setReload={setReload} />
          </div>
       );
@@ -62,11 +79,26 @@ const Cart = () => {
       <Base
          title="Your Cart 🛒"
          description="Ready to checkout"
-         className="container mb-4"
+         className="container"
       >
-         <div className="row text-center" style={{ minHeight: "200px" }}>
-            <div className="col-md-7 col-sm-12">{loadAllProducts()}</div>
-            <div className="col-md-5 col-sm-12">{loadCheckout()}</div>
+         <div>
+            <div className="row text-center">
+               <div className="col-md-7 col-sm-12 card py-4 cartProducts mb-4">
+                  {products.length > 0 ? (
+                     loadAllProducts(products)
+                  ) : (
+                     <div className="card py-1 cartEmpty">
+                        <h4>Your cart is empty ❕</h4>
+                        <Link to="/">
+                           <button className="btn btn-warning mt-2">
+                              Continue Shopping
+                           </button>
+                        </Link>
+                     </div>
+                  )}
+               </div>
+               <div className="col-md-5 col-sm-12">{loadCheckout()}</div>
+            </div>
          </div>
       </Base>
    );

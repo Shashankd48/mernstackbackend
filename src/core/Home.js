@@ -29,12 +29,12 @@ const Home = () => {
       >
          <h3 className="text-center mb-4">All From T-shirts</h3>
          <div className="container">
-            <div className="row text-center">
+            <div className="row text-center" style={{ minHeight: "50vh" }}>
                {products.map((product, index) => {
                   return (
                      <div
                         key={index}
-                        className="col-lg-4 col-md-6 col-sm-6 mb-4 px-4"
+                        className="col-lg-4 col-md-6 col-sm-6 mb-4 px-4 home"
                      >
                         <Card product={product} />
                      </div>

@@ -57,28 +57,29 @@ export default function StripeCheckout({
    // Show stripe button
    const showStripeButton = () => {
       return isAuthenticated() ? (
-         <StripeCheckoutButton
-            stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
-            token={makePayment}
-            amount={getFinalAmount() * 100}
-            name="LCO Store checkout"
-            shippingAddress
-            billingAddress
-         >
-            <button className="btn btn-info">Pay with stripe</button>
-         </StripeCheckoutButton>
+         products.length > 0 ? (
+            <StripeCheckoutButton
+               stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
+               token={makePayment}
+               amount={getFinalAmount() * 100}
+               name="LCO Store checkout"
+               shippingAddress
+               billingAddress
+            >
+               <button className="btn-block btn btn-outline-info">Pay with stripe</button>
+            </StripeCheckoutButton>
+         ) : (
+            ""
+         )
       ) : (
-         <Link to="/sigin">
-            <button className="btn warning">Sign In</button>
+         <Link to="/signin">
+            <button className="btn btn-warning">Sign In</button>
          </Link>
       );
    };
    return (
-      <div className="mt-5 card mx-4 py-4">
-         <p className="text-success">
-            <b> Total amount to be paid {getFinalAmount()} $</b>
-         </p>
-         <div className="mt-2">{showStripeButton()} </div>
+      <div className="px-3">
+         <div className="mt-3">{showStripeButton()} </div>
       </div>
    );
 }

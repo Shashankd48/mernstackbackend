@@ -10,7 +10,7 @@ const AdminDashboard = () => {
    // Left Section
    const adminLeftSide = () => {
       return (
-         <div className="card">
+         <div className="card admin-nav">
             <h4 className="card-header bg-dark text-white">Admin Navigation</h4>
             <ul className="list-group">
                <li className="list-group-item">
@@ -60,19 +60,20 @@ const AdminDashboard = () => {
             <h4 className="card-header">Admin Information</h4>
             <ul className="list-group">
                <li className="list-group-item">
-                  <span className="badge badge-success mr-2 p-2">Name: </span>
-                  {name}
+                  <span className="badge badge-success mr-2 p-2">Name : </span>
+                  <b>{name}</b>
                </li>
 
                <li className="list-group-item">
-                  <span className="badge badge-info mr-2 p-2">Email: </span>
-                  {email}
+                  <span className="badge badge-info mr-2 p-2">Email : </span>
+                  <b>{email}</b>
                </li>
 
                <li className="list-group-item">
                   <span className="badge badge-danger mr-2 p-2">
-                     Admin privilege
-                  </span>
+                     Privilege :{" "}
+                  </span>{" "}
+                  <b>Admin</b>
                </li>
             </ul>
          </div>
@@ -82,11 +83,11 @@ const AdminDashboard = () => {
       <Base
          title="Welcome to admin area"
          description="Manage all of your products here..."
-         className=" bg-base p-4"
+         className="container p-4"
       >
          <div className="row">
-            <div className="col-md-3 col-sm-6">{adminLeftSide()}</div>
-            <div className="col-md-9 col-sm-6">{adminRightSide()}</div>
+            <div className="col-md-4 col-sm-6 mb-4">{adminLeftSide()}</div>
+            <div className="col-md-8 col-sm-6 mb-4">{adminRightSide()}</div>
          </div>
       </Base>
    );
